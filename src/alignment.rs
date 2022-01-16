@@ -2,15 +2,15 @@ use core::fmt;
 use std::cmp::max;
 
 use crate::cell;
-pub struct Alignment<'a, 'b> {
-    pub matrix: Box<Vec<Vec<cell::Cell>>>,
+pub struct Alignment<'a> {
+    pub matrix: Vec<Vec<cell::Cell>>,
     first: &'a str,
-    second: &'b str,
+    second: &'a str,
 }
 
-impl<'a, 'b> Alignment<'a, 'b> {
-    pub fn new(first: &'a str, second: &'b str) -> Alignment<'a, 'b> {
-        let mut initialized_matrix = Box::new(Vec::new());
+impl<'a> Alignment<'a> {
+    pub fn new(first: &'a str, second: &'a str) -> Alignment<'a> {
+        let mut initialized_matrix = Vec::new();
 
         for i in 0..first.chars().count() as i64 + 1 {
             let mut row = Vec::new();
@@ -130,7 +130,7 @@ impl<'a, 'b> Alignment<'a, 'b> {
     }
 }
 
-impl<'a, 'b> fmt::Debug for Alignment<'a, 'b> {
+impl<'a> fmt::Debug for Alignment<'a> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut r = std::result::Result::Ok(());
         for i in 0..self.matrix.len() {
